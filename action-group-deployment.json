@@ -52,9 +52,9 @@
         }
     ],
     "outputs": {
-    //   "agPrincipal": {
-    //     "type": "object",
-    //     "value": "[reference(resourceId('microsoft.insights/actionGroups', parameters('ag_name') ) ).outputResources]"
-    //   }
+      "agPrincipal": {
+        "type": "object",
+        "value": "[reference(resourceId('microsoft.insights/actionGroups', parameters('ag_name') ) )]"
+      }
     }
 }
