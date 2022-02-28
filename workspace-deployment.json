@@ -15,7 +15,6 @@
             "name": "[parameters('workspaces_appmonitoring_workspace_name')]",
             "location": "eastus",
             "properties": {
-                "provisioningState": "Succeeded",
                 "sku": {
                     "name": "pergb2018"
                 },
