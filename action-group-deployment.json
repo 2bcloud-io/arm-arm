@@ -57,7 +57,7 @@
         "value": "[reference(resourceId('microsoft.insights/actionGroups', parameters('ag_name') ), '2021-09-01', 'Full' )]"
       },
       "subscription" : {
-          "type" : "string",
+          "type" : "object",
           "value": "[subscription()]"
       },
       "resource" : {
