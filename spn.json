@@ -20,42 +20,42 @@
                 "contentVersion": "1.0.0.0"
               }
             }
-        },
-        {
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2021-04-01",
-            "name": "alertDeployment",
-            "dependsOn": [
-                "[resourceId('Microsoft.Resources/deployments', 'actionGroupDeployment')]"
-            ],
-            "properties": {
-              "mode": "Incremental",
-              "templateLink": {
-                "uri": "[uri(deployment().properties.templateLink.uri, 'alert-deployment.json')]",
-                "contentVersion": "1.0.0.0"
-              },
-              "parameters": {
-                  "sourceId": {
-                    "value": "/subscriptions/811745bf-14cb-4186-a249-85b222d06a70/resourceGroups/levani-rg/providers/Microsoft.OperationalInsights/workspaces/AppMonitoring-Workspace"
-                  },
-                  "query": {
-                    "value": " AppRegistrationExpiration_CL | summarize arg_max(TimeGenerated,*) by KeyId_g | where DaysToExpiration_d <= 60 | where Status_s == \"Valid\" | where TimeGenerated > ago(1d) | project TimeGenerated, DisplayName_s, KeyId_g, Type_s, StartDate_value_t, EndDate_value_t, Status_s, DaysToExpiration_ "
-                  },
-                  "location": {
-                    "value": "eastus"
-                  },
-                  "severity": {
-                    "value": "2"
-                  },
-                  "alertName": {
-                    "value": "A Sample Alert Name From ARM"
-                  },
-                  "actionGroupId": {
-                    "value": "[reference('actionGroupDeployment').outputs.agPrincipal.value]"
-                  }
-              }
-            }
         }
+        // {
+        //     "type": "Microsoft.Resources/deployments",
+        //     "apiVersion": "2021-04-01",
+        //     "name": "alertDeployment",
+        //     "dependsOn": [
+        //         "[resourceId('Microsoft.Resources/deployments', 'actionGroupDeployment')]"
+        //     ],
+        //     "properties": {
+        //       "mode": "Incremental",
+        //       "templateLink": {
+        //         "uri": "[uri(deployment().properties.templateLink.uri, 'alert-deployment.json')]",
+        //         "contentVersion": "1.0.0.0"
+        //       },
+        //       "parameters": {
+        //           "sourceId": {
+        //             "value": "/subscriptions/811745bf-14cb-4186-a249-85b222d06a70/resourceGroups/levani-rg/providers/Microsoft.OperationalInsights/workspaces/AppMonitoring-Workspace"
+        //           },
+        //           "query": {
+        //             "value": " AppRegistrationExpiration_CL | summarize arg_max(TimeGenerated,*) by KeyId_g | where DaysToExpiration_d <= 60 | where Status_s == \"Valid\" | where TimeGenerated > ago(1d) | project TimeGenerated, DisplayName_s, KeyId_g, Type_s, StartDate_value_t, EndDate_value_t, Status_s, DaysToExpiration_ "
+        //           },
+        //           "location": {
+        //             "value": "eastus"
+        //           },
+        //           "severity": {
+        //             "value": "2"
+        //           },
+        //           "alertName": {
+        //             "value": "A Sample Alert Name From ARM"
+        //           },
+        //           "actionGroupId": {
+        //             "value": "[reference('actionGroupDeployment').outputs.agPrincipal.value]"
+        //           }
+        //       }
+        //     }
+        // }
     ],
     "outputs": { }
 }
