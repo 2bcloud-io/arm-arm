@@ -1,0 +1,82 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "severity": {
+            "type": "string",
+            "defaultValue": "3",
+            "metadata": {
+                "description": "The Severity of the Alert"
+            }
+        },
+        "alertName": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "The name of the alert"
+            }
+        },
+        "sourceId": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "Resource ID of the Log Analytics workspace."
+            }
+        },
+        "location": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "Location for the alert. Must be the same location as the workspace."
+            }
+        },
+        "query": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "The query to run against the analytics."
+            }
+        },
+        "actionGroupId": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "The ID of the action group that is triggered when the alert is activated."
+            }
+        }
+    },
+    "resources":[
+        {
+            "type":"Microsoft.Insights/scheduledQueryRules",
+            "name": "[parameters('alertName')]",
+            "apiVersion": "2018-04-16",
+            "location": "[parameters('location')]",
+            "properties":{
+                "description": "Sample log query alert",
+                "enabled": "true",
+                "source": {
+                    "query": "[parameters('query')]",
+                    "dataSourceId": "[parameters('sourceId')]",
+                    "queryType":"ResultCount"
+                },
+                "schedule":{
+                    "frequencyInMinutes": 5,
+                    "timeWindowInMinutes": 15 
+                },
+                "action":{
+                    "odata.type": "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.Microsoft.AppInsights.Nexus.DataContracts.Resources.ScheduledQueryRules.AlertingAction",
+                    "severity": "[parameters( 'severity')]",
+                    "aznsAction":{
+                        "actionGroup": "[array(parameters('actionGroupId'))]",
+                        "emailSubject": "Alert mail subject From ARM",
+                        "customWebhookPayload":"{ \"alertname\":\"#alertrulename\", \"IncludeSearchResults\":true }"
+                    },
+                    "trigger":{
+                        "thresholdOperator": "GreaterThan",
+                        "threshold": 0
+                    }
+                }
+            }
+        }
+    ]
+}

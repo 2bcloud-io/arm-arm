@@ -1,0 +1,60 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "ag_name": {
+            "defaultValue": "AppRegistrationExpiration",
+            "type": "String"
+        },
+        "ag_shortName": {
+            "type": "string",
+            "defaultValue": "AGname",
+            "metadata": {
+                "description": "Short Name for the Action Group"
+            }
+        },
+        "ag_notifyEmail": {
+            "type": "string",
+            "defaultValue": "AGemail",
+            "metadata": {
+                "description": "Email address to send notification to."
+            }
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "microsoft.insights/actionGroups",
+            "apiVersion": "2021-09-01",
+            "name": "[parameters('ag_name')]",
+            "location": "Global",
+            "properties": {
+                "groupShortName": "[parameters( 'ag_shortName')]",
+                "enabled": true,
+                "emailReceivers": [
+                    {
+                        "name": "App Registration Monitoring Notification_-EmailAction-",
+                        "emailAddress": "[parameters( 'ag_notifyEmail')]",
+                        "useCommonAlertSchema": false
+                    }
+                ],
+                "smsReceivers": [],
+                "webhookReceivers": [],
+                "eventHubReceivers": [],
+                "itsmReceivers": [],
+                "azureAppPushReceivers": [],
+                "automationRunbookReceivers": [],
+                "voiceReceivers": [],
+                "logicAppReceivers": [],
+                "azureFunctionReceivers": [],
+                "armRoleReceivers": []
+            }
+        }
+    ],
+    "outputs": {
+      "agPrincipal": {
+        "type": "object",
+        "value": "[reference(resourceId('microsoft.insights/actionGroups', parameters('ag_name') ) ).properties.outputResources.id]"
+      }
+    }
+}

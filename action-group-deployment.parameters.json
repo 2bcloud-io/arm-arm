@@ -1,0 +1,15 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "ag_name": {
+            "value": "AGFromARM"
+        },
+        "ag_shortName": {
+            "value": "SPNexp"
+        },
+        "ag_notifyEmail": {
+            "value": "levani@2bcloud.io"
+        } 
+    }
+}
