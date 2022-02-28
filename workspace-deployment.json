@@ -5418,5 +5418,11 @@
                 "retentionInDays": 30
             }
         }
-    ]
+    ],
+    "outputs": {
+        "thing": {
+            "type": "object",
+            "value": "[reference(resourceId('microsoft.operationalinsights/workspaces', parameters('workspaces_appmonitoring_workspace_name') ) )]"
+        }
+    }
 }

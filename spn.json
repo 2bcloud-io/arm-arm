@@ -24,9 +24,27 @@
         {
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2021-04-01",
+            "name": "workspaceDeployment",
+            "properties": {
+              "mode": "Incremental",
+              "templateLink": {
+                "uri": "[uri(deployment().properties.templateLink.uri, 'workspace-deployment.json')]",
+                "contentVersion": "1.0.0.0"
+              },
+              "parameters": {
+                  "workspaces_appmonitoring_workspace_name": {
+                    "value": "appmonitoring-workspace-arm"
+                  }
+              }
+            }
+        },        
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2021-04-01",
             "name": "alertDeployment",
             "dependsOn": [
-                "[resourceId('Microsoft.Resources/deployments', 'actionGroupDeployment')]"
+                "[resourceId('Microsoft.Resources/deployments', 'actionGroupDeployment')]",
+                "[resourceId('Microsoft.Resources/deployments', 'workspaceDeployment')]"
             ],
             "properties": {
               "mode": "Incremental",
