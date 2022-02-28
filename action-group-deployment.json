@@ -55,6 +55,26 @@
       "agPrincipal": {
         "type": "object",
         "value": "[reference(resourceId('microsoft.insights/actionGroups', parameters('ag_name') ), '2021-09-01', 'Full' )]"
+      },
+      "subscription" : {
+          "type" : "string",
+          "value": "[subscription()]"
+      },
+      "resource" : {
+          "type" : "string",
+          "value": "[reference(resourceId('microsoft.insights/actionGroups', parameters('ag_name') ), '2021-09-01', 'Full' ).resourceId]"
+      },
+      "concat" : {
+          "type" : "string",
+          "value": "[
+             concat(
+                 '/subscriptions/',
+                 reference(resourceId('microsoft.insights/actionGroups', parameters('ag_name') ), '2021-09-01', 'Full' ).subscriptionId,
+                 '/resourceGroups/',
+                 reference(resourceId('microsoft.insights/actionGroups', parameters('ag_name') ), '2021-09-01', 'Full' ).resourceGroupName,
+                 '/providers/',
+                 reference(resourceId('microsoft.insights/actionGroups', parameters('ag_name') ), '2021-09-01', 'Full' ).resourceId
+             )]"
       }
     }
 }
