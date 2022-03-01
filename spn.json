@@ -54,7 +54,7 @@
               },
               "parameters": {
                   "sourceId": {
-                    "value": "/subscriptions/811745bf-14cb-4186-a249-85b222d06a70/resourceGroups/levani-rg/providers/Microsoft.OperationalInsights/workspaces/AppMonitoring-Workspace"
+                    "value": "[resourceId('Microsoft.Resources/deployments', 'workspaceDeployment')]"
                   },
                   "query": {
                     "value": " AppRegistrationExpiration_CL | summarize arg_max(TimeGenerated,*) by KeyId_g | where DaysToExpiration_d <= 60 | where Status_s == \"Valid\" | where TimeGenerated > ago(1d) | project TimeGenerated, DisplayName_s, KeyId_g, Type_s, StartDate_value_t, EndDate_value_t, Status_s, DaysToExpiration_ "
