@@ -575,6 +575,68 @@
         //         "version": 2
         //     }
         // },
+        
+        // {
+        //     "type": "Microsoft.OperationalInsights/workspaces/tables",
+        //     "apiVersion": "2021-12-01-preview",
+        //     "name": "[concat(parameters('workspaces_appmonitoring_workspace_name'), '/AppRegistrationExpiration_CL')]",
+        //     "dependsOn": [
+        //         "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaces_appmonitoring_workspace_name'))]"
+        //     ],
+        //     "properties": {
+        //         "totalRetentionInDays": 30,
+        //         "plan": "Analytics",
+        //         "schema": {
+        //             "name": "AppRegistrationExpiration_CL",
+        //             "columns": [
+        //                 {
+        //                     "name": "StartDate_value_t",
+        //                     "type": "datetime"
+        //                 },
+        //                 {
+        //                     "name": "StartDate_DateTime_s",
+        //                     "type": "string"
+        //                 },
+        //                 {
+        //                     "name": "EndDate_value_t",
+        //                     "type": "datetime"
+        //                 },
+        //                 {
+        //                     "name": "EndDate_DateTime_s",
+        //                     "type": "string"
+        //                 },
+        //                 {
+        //                     "name": "DisplayName_s",
+        //                     "type": "string"
+        //                 },
+        //                 {
+        //                     "name": "KeyId_g",
+        //                     "type": "guid"
+        //                 },
+        //                 {
+        //                     "name": "Status_s",
+        //                     "type": "string"
+        //                 },
+        //                 {
+        //                     "name": "TimeStamp_t",
+        //                     "type": "datetime"
+        //                 },
+        //                 {
+        //                     "name": "DaysToExpiration_d",
+        //                     "type": "real"
+        //                 },
+        //                 {
+        //                     "name": "Type_s",
+        //                     "type": "string"
+        //                 }
+        //             ]
+        //         },
+        //         "retentionInDays": 30
+        //     }
+        // },
+
+
+
         {
             "type": "Microsoft.OperationalInsights/workspaces/tables",
             "apiVersion": "2021-12-01-preview",
@@ -2331,64 +2393,6 @@
                 "plan": "Analytics",
                 "schema": {
                     "name": "AppPlatformSystemLogs"
-                },
-                "retentionInDays": 30
-            }
-        },
-        {
-            "type": "Microsoft.OperationalInsights/workspaces/tables",
-            "apiVersion": "2021-12-01-preview",
-            "name": "[concat(parameters('workspaces_appmonitoring_workspace_name'), '/AppRegistrationExpiration_CL')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaces_appmonitoring_workspace_name'))]"
-            ],
-            "properties": {
-                "totalRetentionInDays": 30,
-                "plan": "Analytics",
-                "schema": {
-                    "name": "AppRegistrationExpiration_CL",
-                    "columns": [
-                        {
-                            "name": "StartDate_value_t",
-                            "type": "datetime"
-                        },
-                        {
-                            "name": "StartDate_DateTime_s",
-                            "type": "string"
-                        },
-                        {
-                            "name": "EndDate_value_t",
-                            "type": "datetime"
-                        },
-                        {
-                            "name": "EndDate_DateTime_s",
-                            "type": "string"
-                        },
-                        {
-                            "name": "DisplayName_s",
-                            "type": "string"
-                        },
-                        {
-                            "name": "KeyId_g",
-                            "type": "guid"
-                        },
-                        {
-                            "name": "Status_s",
-                            "type": "string"
-                        },
-                        {
-                            "name": "TimeStamp_t",
-                            "type": "datetime"
-                        },
-                        {
-                            "name": "DaysToExpiration_d",
-                            "type": "real"
-                        },
-                        {
-                            "name": "Type_s",
-                            "type": "string"
-                        }
-                    ]
                 },
                 "retentionInDays": 30
             }
