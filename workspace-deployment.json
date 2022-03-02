@@ -40,7 +40,7 @@
                 "totalRetentionInDays": 30,
                 "plan": "Analytics",
                 "schema": {
-                    "name": "AppRegistrationExpiration_CL2",
+                    "name": "AppRegistrationExpiration_CL",
                     "columns": [
                         {
                             "name": "StartDate_value_t",
