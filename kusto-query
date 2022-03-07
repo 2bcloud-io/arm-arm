@@ -1,0 +1,14 @@
+AppRegistrationExpiration_CL 
+| summarize arg_max(TimeGenerated,*) by KeyId_g 
+| where DaysToExpiration_d <= 60 
+| where Status_s == "Valid"
+| where TimeGenerated > ago(1d) 
+| project 
+    TimeGenerated, 
+    DisplayName_s, 
+    KeyId_g, 
+    Type_s, 
+    StartDate_value_t, 
+    EndDate_value_t, 
+    Status_s, 
+    DaysToExpiration_d
